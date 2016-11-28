@@ -20,7 +20,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <%--LOGIN LINKS--%>
-                <li><a href="/logout">Logout</a></li>
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.username" var="username" />
+                    <li><a href="/logout">Logout  <strong>${username}</strong></a></li>
+                </sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
+                    <li><a href="/login">Login</a></li>
+                </sec:authorize>
             </ul>
         </div>
     </div>

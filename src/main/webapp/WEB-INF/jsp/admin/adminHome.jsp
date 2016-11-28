@@ -2,6 +2,10 @@
 <%@ include file="../includes/navbar.jsp" %>
 <%@ include file="../includes/subnav_admin.jsp" %>
 
-<h2>Admin</h2>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Welcome to the admin tools, ${username}.</h2>
+    </div>
+</div>
 
 <%@ include file="../includes/footer.jsp" %>

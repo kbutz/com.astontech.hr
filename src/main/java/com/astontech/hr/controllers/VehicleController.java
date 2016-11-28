@@ -4,6 +4,7 @@ import com.astontech.hr.domain.VO.VehicleVO;
 import com.astontech.hr.domain.Vehicle;
 import com.astontech.hr.domain.VehicleMake;
 import com.astontech.hr.domain.VehicleModel;
+import com.astontech.hr.services.VehicleModelService;
 import com.astontech.hr.services.VehicleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,16 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private VehicleModelService vehicleModelService;
+
     private Logger logger = Logger.getLogger(VehicleController.class);;
 
     @RequestMapping(value = "/admin/vehicle/list", method = RequestMethod.GET)
      public String adminVehicleList(Model model) {
         model.addAttribute("vehicleVO", new VehicleVO());
         model.addAttribute("vehicleList", vehicleService.listAllVehicles());
+
         return "admin/vehicle/vehicle_list";
     }
 
@@ -99,6 +104,15 @@ public class VehicleController {
         Vehicle newVehicle = new Vehicle();
 
         VehicleModel newVehicleModel = new VehicleModel();
+
+//        VehicleModel findByName = vehicleModelService.findVehicleModelByName(vehicleVO.getNewVehicleModel());
+//        if (findByName.getVehicleModelName().equals(vehicleVO.getNewVehicleModel())){
+//            System.out.println(findByName.getId());
+//            newVehicleModel.setId(findByName.getId());
+//            newVehicleModel.setVehicleModelName(findByName.getVehicleModelName());
+//            newVehicleModel.getVehicleMake().setVehicleMakeName(vehicleVO.getNewVehicleMake());
+//        } else {}
+
         newVehicleModel.getVehicleMake().setVehicleMakeName(vehicleVO.getNewVehicleMake());
         newVehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
 
@@ -108,6 +122,7 @@ public class VehicleController {
         newVehicle.setVIN(vehicleVO.getNewVIN());
         newVehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
         newVehicle.setColor(vehicleVO.getNewColor());
+
 
         vehicleService.saveVehicle(newVehicle);
     }

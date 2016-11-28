@@ -1,4 +1,5 @@
-<%@include file="./includes/header.jsp" %>
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/navbar.jsp" %>
 
 <div class="container blueBackground">
 
@@ -41,3 +42,5 @@
         </form>
     </div>
 </div>
+
+<%@ include file="includes/footer.jsp" %>

@@ -17,7 +17,7 @@ public class Vehicle {
     private String VIN;
     private String color;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     VehicleModel vehicleModel;
 
     public Vehicle() {}

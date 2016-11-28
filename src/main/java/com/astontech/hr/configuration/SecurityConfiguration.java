@@ -58,6 +58,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 userDetailsService.createUser(userDetails);
             }
+            if (!userDetailsService.userExists("admin")) {
+                List<GrantedAuthority> authorities = new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority("ADMIN"));
+                User userDetails = new User("admin", encoder.encode("password"), authorities);
+
+                userDetailsService.createUser(userDetails);
+            }
         }
     }
 
@@ -78,7 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             httpSecurity
                     .authorizeRequests().antMatchers("/static/**").permitAll()
                     .and()
-                    .authorizeRequests().antMatchers("/login**").permitAll()
+                    .authorizeRequests().antMatchers("/login/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
         } else if(authenticationMethod.equals("DATABASE")) {
@@ -86,11 +93,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             httpSecurity
                     .authorizeRequests().antMatchers("/static/**").permitAll()
                     .and()
+                    .authorizeRequests().antMatchers("/").permitAll()
+                    .and()
                     .authorizeRequests().antMatchers("/login**").permitAll()
                     .and()
-                    .authorizeRequests().antMatchers("/admin/**").hasAuthority("USER")
+                    .authorizeRequests().antMatchers("/admin/**").hasAnyAuthority("ADMIN", "USER")
                     .anyRequest().authenticated();
-
         }
 
         //common security configuration

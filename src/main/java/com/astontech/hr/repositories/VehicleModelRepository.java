@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface VehicleModelRepository extends CrudRepository<VehicleModel, Integer> {
-    VehicleModel findVehicleModelByVehicleModelName(String vehicleModelName);
+    VehicleModel findTopOneByVehicleModelName(String vehicleModelName);
 }

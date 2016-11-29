@@ -108,9 +108,12 @@ public class VehicleController {
 //        VehicleModel findByName = vehicleModelService.findVehicleModelByName(vehicleVO.getNewVehicleModel());
 //        if (findByName.getVehicleModelName().equals(vehicleVO.getNewVehicleModel())){
 //            System.out.println(findByName.getId());
+//
 //            newVehicleModel.setId(findByName.getId());
 //            newVehicleModel.setVehicleModelName(findByName.getVehicleModelName());
 //            newVehicleModel.getVehicleMake().setVehicleMakeName(vehicleVO.getNewVehicleMake());
+//
+//            newVehicle.setVehicleModel(newVehicleModel);
 //        } else {}
 
         newVehicleModel.getVehicleMake().setVehicleMakeName(vehicleVO.getNewVehicleMake());

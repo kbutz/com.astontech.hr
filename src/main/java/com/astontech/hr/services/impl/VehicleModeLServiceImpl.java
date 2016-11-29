@@ -25,7 +25,7 @@ public class VehicleModeLServiceImpl implements VehicleModelService {
 
     @Override
     public VehicleModel findVehicleModelByName(String vehicleModelName) {
-        return vehicleModelRepository.findVehicleModelByVehicleModelName(vehicleModelName);
+        return vehicleModelRepository.findTopOneByVehicleModelName(vehicleModelName);
     }
 
     @Override

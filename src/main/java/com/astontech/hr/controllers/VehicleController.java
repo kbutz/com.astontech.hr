@@ -126,7 +126,6 @@ public class VehicleController {
         newVehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
         newVehicle.setColor(vehicleVO.getNewColor());
 
-
         vehicleService.saveVehicle(newVehicle);
     }
 }

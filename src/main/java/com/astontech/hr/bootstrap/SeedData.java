@@ -3,6 +3,7 @@ package com.astontech.hr.bootstrap;
 import com.astontech.hr.domain.*;
 import com.astontech.hr.services.ElementService;
 import com.astontech.hr.services.ElementTypeService;
+import com.astontech.hr.services.EmployeeService;
 import com.astontech.hr.services.impl.VehicleMakeServiceImpl;
 import com.astontech.hr.services.impl.VehicleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,15 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     private VehicleServiceImpl vehicleServiceImpl;
 
     @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
     private VehicleMakeServiceImpl vehicleMakeServiceimpl;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        generateElementAndElementTypes();
+        //generateElementAndElementTypes();
+        //generateEmployees();
     }
 
     private void generateElementAndElementTypes() {
@@ -84,4 +89,66 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleServiceImpl.saveVehicle(newVehicle);
     }
 
+    private void generateEmployees() {
+
+        Employee employee = new Employee();
+        employee.setFirstName("KyleB");
+        employee.setLastName("Butz");
+        employee.setBackground("Java Dev");
+        employeeService.saveEmployee(employee);
+
+        Employee employee1 = new Employee();
+        employee1.setFirstName("Steve");
+        employee1.setLastName("Irwin");
+        employee1.setBackground("Java Dev");
+        employeeService.saveEmployee(employee1);
+
+        Employee employee2 = new Employee();
+        employee2.setFirstName("Dane");
+        employee2.setLastName("Dyer");
+        employee2.setBackground("Java Dev");
+        employeeService.saveEmployee(employee2);
+
+        Employee employee3 = new Employee();
+        employee3.setFirstName("Hello");
+        employee3.setLastName("World");
+        employee3.setBackground(".NET dev");
+        employeeService.saveEmployee(employee3);
+
+        Employee employee4 = new Employee();
+        employee4.setFirstName("Kyle");
+        employee4.setLastName("Butz");
+        employee4.setBackground("python dev");
+        employeeService.saveEmployee(employee4);
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

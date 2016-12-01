@@ -28,7 +28,7 @@ public class EmployeeRest {
     }
     // SAVE
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public Employee saveEmployee(@ModelAttribute("employee") Employee employee) {
         return employeeService.saveEmployee(employee);
     }
     // DELETE

@@ -7,15 +7,16 @@
 <script>
     $(document).ready(function () {
         buildTable();
+        deleteModal();
     })
 </script>
 
 <div class="container">
-    <div class="jumbotron">
-        <h2>Employee Page</h2>
-        <p>This application manages the Aston Tech employees.</p>
-    </div>
-    <button onClick="$('#employeeModal').modal('show')" class="btn btn-default">Add New Employee</button>
+
+    <h2>Employee Page</h2>
+    <p>This application manages the Aston Tech employees.</p>
+
+    <button onClick="insertEmployee()" class="btn btn-default">Add New Employee</button>
     <div class="container">
         <table id="employee-table" class="table table-striped table-hover">
            <thead>
@@ -45,6 +46,9 @@
                         <form class="form-horizontal">
                             <fieldset>
 
+                                <hidden id="employeeId" />
+                                <hidden id="version" />
+
                                 <div class="form-group">
                                     <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
                                     <div class="col-lg-10">
@@ -53,7 +57,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputLastName" class="col-lg-2 control-label">First Name</label>
+                                    <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" id="inputLastName" placeholder="Email">
                                     </div>
@@ -71,6 +75,24 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onclick="saveEmployee()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="confirmDeleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Confirm Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                       <p>Are you sure you want to delete? This cannot be undone!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger btn-ok" data-dismiss="modal" id="confirmDelete">
+                            Delete</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 package com.astontech.hr.bootstrap;
 
 import com.astontech.hr.domain.*;
+import com.astontech.hr.services.ContactService;
 import com.astontech.hr.services.ElementService;
 import com.astontech.hr.services.ElementTypeService;
 import com.astontech.hr.services.EmployeeService;
@@ -30,12 +31,13 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     private EmployeeService employeeService;
 
     @Autowired
-    private VehicleMakeServiceImpl vehicleMakeServiceimpl;
+    private ContactService contactService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        //generateElementAndElementTypes();
-        //generateEmployees();
+//        generateElementAndElementTypes();
+//        generateEmployees();
+//        generateContacts();
     }
 
     private void generateElementAndElementTypes() {
@@ -120,6 +122,38 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         employee4.setLastName("Butz");
         employee4.setBackground("python dev");
         employeeService.saveEmployee(employee4);
+
+    }
+
+    private void generateContacts() {
+        List<Contact> contactList = new ArrayList<>();
+        Contact contact = new Contact();
+        contact.setFirstName("Boo");
+        contact.setLastName("Urns");
+        contact.setDescription("Megalomaniac");
+
+        contact.getAddress().setStreet("155 Happyvale Terrace");
+        contact.getAddress().setCity("Springfield");
+        contact.getAddress().setState("OH");
+        contact.getAddress().setZip("55311");
+
+        contactList.add(contact);
+
+        Contact contact1 = new Contact();
+        contact1.setFirstName("Ned");
+        contact1.setLastName("Stark");
+        contact1.setDescription("Fucking dying");
+
+        contact1.getAddress().setStreet("133 Missing Head");
+        contact1.getAddress().setCity("Winterfell");
+        contact1.getAddress().setState("NORTH");
+        contact1.getAddress().setZip("55311");
+
+        contactList.add(contact1);
+
+//        Iterable<Contact> contactIterable = contactList;
+
+        contactService.saveContactList(contactList);
 
     }
 

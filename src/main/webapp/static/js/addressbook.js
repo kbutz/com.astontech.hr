@@ -3,10 +3,10 @@ function buildTable() {
     $.getJSON('/api/contact/', {
         ajax: 'true'
     }, function(data) {
-        console.log(data)
+        console.log(data);
+        var content = '';
         $.each(data, function(index, single) {
-            $('#contact-table').find('tbody')
-                .append("<tr>" +
+            content += "<tr id='contact"+ single.id +"'>" +
                 "<td>" + single.id + "</td>" +
                 "<td>" + single.firstName + " " + single.lastName + "</td>" +
                 "<td>" + single.description + "</td>" +
@@ -16,9 +16,10 @@ function buildTable() {
                         + single.address.zip + "</td>" +
                 "<td><button onclick='editContact(" + single.id + ")'>Edit</button></td>" +
                 "<td><button data-toggle='modal' data-target='#confirmDeleteModal' data-record-id='"+ single.id +"'>Delete</button></td>" +
-                "</tr>");
+                "</tr>";
 
         });
+        $('#contact-table').find('tbody').html(content);
     });
 }
 
@@ -34,7 +35,7 @@ function insertContact() {
     $('#inputState').val("");
     $('#inputZip').val("");
     //open modal
-    $('#contactModal').modal('show')
+    $('#contactModal').modal('show');
 }
 
 function saveContact() {
@@ -76,7 +77,10 @@ function saveContact() {
         url: "/api/contact/",
         async: true,
         success: function() {
-            window.location.reload();
+            buildTable();
+            $('#contactModal').modal('hide');
+            $('#successParagraph').html("Successfully saved " + firstName + " " + lastName + ".");
+            $('#alertSuccess').modal('show');
         }
     })
 }
@@ -113,7 +117,10 @@ function deleteModal() {
             async: true,
             dataType: "json",
             success: function () {
-                window.location.reload();
+                buildTable();
+                $('#confirmDeleteModal').modal('hide');
+                $('#successParagraph').html("Successfully deleted contact ID#" + id + ".");
+                $('#alertSuccess').modal('show');
             },
             error: function () {
                 alert("Error Deleting Contact")

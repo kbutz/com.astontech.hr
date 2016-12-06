@@ -37,7 +37,7 @@
             </tbody>
         </table>
     </div>
-    <div class="modal" id="contactModal">
+    <div class="modal fade" id="contactModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -111,7 +111,8 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="confirmDeleteModal">
+
+    <div class="modal fade" id="confirmDeleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -129,6 +130,16 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="alertSuccess">
+        <div class="modal-dialog">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <p id="successParagraph"></p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <%@ include file="includes/footer.jsp" %>
